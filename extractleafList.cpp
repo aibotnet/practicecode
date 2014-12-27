@@ -19,15 +19,38 @@ node * createNode(int data){
 	
 	return temp;
 }
-void print(node* root){
-}
 
 node *extractLeafList(node *root , node **head){
+	if (!root)
+		return NULL;
+	if (root->left==NULL and root->right==NULL){		
+			root->right = *head;
+			if ((*head)!=NULL){
+				(*head)->left = root;
+			}
+			*head = root;
+	return NULL;
+	}	
+	root->right=extractLeafList(root->right , head);
+	root->left=extractLeafList(root->left , head);
+	
+	return root;
 }
+
 void printList(node *head){
-
+	while(head){
+		cout<<head->data <<" ";
+		head=head->right;
+	}
 }
 
+void print(node * root){
+	if(!root)
+		return;
+	cout<<root->data<<" ";
+	print(root->left);
+	print(root->right);
+}
 int main(){
     node *head = NULL;
     node *root = createNode(1);
