@@ -6,17 +6,12 @@ using namespace std;
 void justSmallerPalindromeUtil(int *numArr,int n){
 	bool leftGreater=false;
 	int mid=n/2,i=mid-1,j;
-	if(n%2==1)j=mid+1;
-	else j=mid;
-	
-	while(i>=0 && numArr[i]==numArr[j]){
-		i--;j++;
-	}
+	if(n%2==1)j=mid+1;else j=mid;
+	while(i>=0 && numArr[i]==numArr[j]){i--;j++;}
 	
 	//number is already palindrome 
 	//or left side of number is smaller than it's right side for each i
-	if(i<0 || numArr[i] > numArr[j])
-		leftGreater=true;
+	if(i<0 || numArr[i] > numArr[j]) leftGreater=true;
 	while(i>=0){
 		numArr[j]=numArr[i];
 		i--;j++; //copying left side to right side
@@ -26,10 +21,8 @@ void justSmallerPalindromeUtil(int *numArr,int n){
 		int carry=-1;i=mid-1;
 		if(n%2==1){
 			numArr[mid]+=carry;
-			if (numArr[mid] <0){
-				carry=-1;numArr[mid]=9;
-			}else carry=0;	
-		j=mid+1;
+			if (numArr[mid] <0){carry=-1;numArr[mid]=9;}else carry=0;	
+		    j=mid+1;
 		}else j=mid;
 		
 		while(i>=0){
