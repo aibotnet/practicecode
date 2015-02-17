@@ -3,11 +3,15 @@
 #include<limits.h>
 using namespace std;
 int min(int a , int b){
-	if(a<b)
-		return a;
-	return b;
+	if(a<b)return a;return b;
 }
 
+//return total no of ways a sum can be made by using these coins.
+int totalNumberOfWaysToChangeCoin(int *coin,int n, int amount){
+
+}
+
+//return minimum no of coin required to change this problem.
 int minimumcoinRequired(int *coin,int n , int amount){
 	int *C =(int *)malloc(4*(n+1));
 	for(int i=1;i<=amount;i++)
