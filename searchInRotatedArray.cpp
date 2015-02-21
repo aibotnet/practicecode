@@ -30,7 +30,7 @@ int pivotIndex(int arr[], int f , int l){
 		return pivotIndex(arr,mid+1,l);
 }
 
-int convertRomanString(int *arr,int number, int n){
+int searchElementInRotatedAndPivotedArray(int *arr,int number, int n){
 	
 	int pivot_index= pivotIndex(arr,0,n-1);
 	if (pivot_index == -1)
@@ -46,5 +46,5 @@ int convertRomanString(int *arr,int number, int n){
 
 int main(){
 	int  arr[] = {4,5,6,7,8,9,1,2,3};
-	cout<<convertRomanString(arr,6, sizeof(arr)/sizeof(int));
+	cout<<searchElementInRotatedAndPivotedArray(arr,6, sizeof(arr)/sizeof(int));
 }
