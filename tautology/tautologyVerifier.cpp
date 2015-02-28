@@ -11,7 +11,7 @@ bool isOperend(char ch){
 }
 
 bool VerifierString(char propstat[], int n){
-	//cout<<propstat<<endl;
+	cout<<propstat<<endl;
 	stack<int> val;//value stack
 	stack<char> op;//operator stack
 	int v1,v2;
@@ -95,8 +95,8 @@ bool VerifierString(char propstat[], int n){
 			op.pop();
 		}
 	}
-	//cout<<val.top()<<endl;
-	return val.top()-48;
+	cout<<val.top()<<endl;
+	return val.top();
 }
 //Generate all possible expression of given length
 bool tautologyVerifier(char propstat[],int start, int n){
