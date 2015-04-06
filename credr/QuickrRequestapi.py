@@ -5,12 +5,13 @@ import time
 import datetime
 from datetime import date, timedelta
 import httplib, urllib2,urllib,sys,re
+import lxml.html as lh
 from bs4 import BeautifulSoup
 #from BeautifulSoup import BeautifulSoup
 
 
 sourceId = 2
-debugValue =1
+debugValue =0
 lastUpdated= 0
 cityWiseDone =0
 counter =0
@@ -65,6 +66,7 @@ def getHeading(soup):
 def getUserName(soup):
     try:
         userName = soup.find("span", class_ ="ad-atrbt-val").text.strip()
+        #print userName
         return userName
     except:
         return ""
@@ -73,21 +75,23 @@ def getPhoneNumber(soup):
     try:
         phone = soup.find("span", class_ ="NoVerified-Text").text.strip()
         phone = ''.join(e for e in phone if e.isalnum()) # removing extra spaces
+        #print phone
         return phone
     except:
         return ""
 
 def getBrand(soup):
     try:
-        brand = soup.find("strong", itemprop_= "brand").text.strip()
-
+        brand = soup.find_all("span", class_='ad-atrbt-val')[2].stripped_strings
+        brand = list(brand)[0]
         return brand
     except:
         return ""
 
 def getYear(soup):
     try:
-        year = soup.find("tr", class_="brbottdashc8").text.strip().split()[-1].strip()
+        year = soup.find_all("span", class_='ad-atrbt-val')[3].stripped_strings
+        year = list(year)[0]
         return year
     except:
         return ""
@@ -120,20 +124,26 @@ def getAddedDate(addedInfo):
 
 def getPrice(soup):
     try:
-        price = ignoreException(soup.find("div", class_ ="pricelabel tcenter").text.strip())
-        price_clean = str(re.findall('\d+',price)[0])
+        #price = ignoreException(soup.find("div", class_ ="pricelabel tcenter").text.strip())
+        #price_clean = str(re.findall('\d+',price)[0])
+        price = soup.find_all("span", class_='ad-atrbt-val')[4].stripped_strings
+        price_clean = list(price)[0]
+        #print "price ",price_clean
         return price_clean
     except:
+        print
         return ""
 
 def getDescription(soup):
     try:
-        description = soup.find("div", class_ ="ad-descbox newad-descbox ad_description_more").text.strip()
+        description = soup.find_all("div",class_='description_wrap')[0].stripped_strings
+        description = list(description)[1]
         return description
     except:
         return ""
 
 def processLink(link , location):
+    print link
     global cityWiseDone, counter, debugValue
     if debugValue:
         print link
@@ -146,8 +156,10 @@ def processLink(link , location):
     year = getYear(soup)
     price = getPrice(soup)
     description = "brand:"+str(brand)+", year :"+year+" ,"+getDescription(soup)
+    #print "description : ",description
     try:
         addedInfo = soup.find("span", class_ ="pdingleft10 brlefte5").text.split(',')[0].strip()
+        print "addedInfo ",addedInfo
         addedByPhone = checkAddedByPhone(addedInfo)
         addedOn = getAddedDate(addedInfo)
         if addedOn < lastUpdated and not migration:
@@ -218,10 +230,12 @@ for city in cities:
         for link in links:
             if link:
                 processLink(link, city)
+                break
             if cityWiseDone:
                 break
         if cityWiseDone:
             cityWiseDone =0
             break
+        break
 sys.exit()
 
