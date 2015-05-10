@@ -44,8 +44,8 @@ int  countInversion(int number[],int n){
 
 int main(){
 	int n,a,b,max=INT_MIN;
-	cin>>n;
-	stack<int> s1,s2;
+	cin>>n;stack<int> s1,s2;
+	
 	while(n>0){
 		cin>>a;cin>>b;
 		if(a>max) max=a;
@@ -57,9 +57,7 @@ int main(){
 
 	int *mergeArray = new int[max];
 	
-	for(int i=0;i<max;i++){
-		mergeArray[i]=i;
-	}
+	for(int i=0;i<max;i++){mergeArray[i]=i;}
 
 	while(!s1.empty()){
 		int temp=mergeArray[s1.top()-1];

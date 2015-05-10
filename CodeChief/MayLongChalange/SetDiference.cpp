@@ -9,8 +9,6 @@ long long mod = 1000000007;
 
 int getSetDiff(int N,std::vector<int> v){
     sort(v.begin(),v.end());
-    for(int i=0;i<N;i++) cout<<v[i];
-    cout<<"\n";    
     int gdiff=0,diff,p,c;
     p=pow(2,N-2); 
     for(int i=N-1;i>0;i--){
