@@ -1,0 +1,56 @@
+http://frame.ebay.com/ebaymotors/ws/eBayISAPI.dll?GetFitmentData&rand=0.5956277663330161&site=100&req=2&cid=33564&item=280945472994&ct=20&pn=&page=1&cb=jQuery17017995870942307912_1388985606009
+
+
+
+http://frame.ebay.com/ebaymotors/ws/eBayISAPI.dll?GetFitmentData&rand=0.8476071321550459&site=100&req=5&cid=33564&item=280945472994&ct=20&rf=vehicles&cb=jQuery17017995870942307912_1388985606010
+
+
+http://frame.ebay.com/ebaymotors/ws/eBayISAPI.dll?GetFitmentData&rand=0.5956277663330161&site=100&req=2&cid=33564&item=390456816778&ct=20&pn=&page=1&cb=jQuery
+
+req=2 - cid, item
+
+http://frame.ebay.com/ebaymotors/ws/eBayISAPI.dll?GetFitmentData&rand=0.41549720348699815&site=100&req=1&cid=33564&pid=76370707&item=141158590853&ct=20&page=1&cb=jQuery1705837228346862361_1388986463146
+
+req=1	- cid, pid & item
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ALERT TEST TEST
+
+where req =2 isnt working 
+
+http://www.ebay.com/itm/271362049663
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+http://frame.ebay.com/ebaymotors/ws/eBayISAPI.dll?GetFitmentData&rand=0.3635987357117708&site=100&req=1&cid=33567&pid=76737933&item=271362049663&ct=20&page=1&cb=jQuery17008242618947064662_1388998954220
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

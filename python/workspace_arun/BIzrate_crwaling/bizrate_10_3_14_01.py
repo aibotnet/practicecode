@@ -1,0 +1,205 @@
+import lxml
+from lxml import etree
+import urllib
+import lxml.html as lh
+from bs4 import BeautifulSoup as BS
+import mechanize
+#import json
+#import simplejson
+#import ast
+#import random 
+#import decimal
+#import time
+
+def Find_Departments():
+                        url="http://www.bizrate.com/ratings_guide/guide/"
+                        print "123"
+                        try :
+                            doc = lh.parse(url)
+                        
+                        except:
+                            print "page unable to load ::::::::::: http://www.bizrate.com/ratings_guide/guide/  \n "
+                            
+                        try :
+                            #text=doc.xpath('//*[id("search_header")]/table/tbody/tr/td/div/div/ul/li/a/text()')
+                            text=doc.xpath('//li/a/text()')                            
+                            #print text
+                            return text
+                            
+                        except :
+                            
+                            print "NO department inforation check for the xpath \n"
+ 
+
+
+def  Review_Count(doc , i ): 
+    try :
+        text=doc.xpath('//div[%d]/div[@class="merch"]/div[@class="all_ratings"]/div/span/span/text()'%i)
+        return text[0]
+        
+    except :
+        
+        try :
+            text=doc.xpath('//div[%d]/div[@class="merch"]/div[@class="all_ratings"]/div/div/span/span/text()'%i)
+            return text[0]
+            
+        except :
+            try :
+                text=doc.xpath('//div[%d]/div[@class="merch"]/div[@class="all_ratings"]/div[@class="not_rated"]/text()'%i)
+                return text[0]
+                
+            except :
+                return "NO reviews not rated yet"
+        
+
+def Store_Name(doc , i):
+    try :
+        store_name=doc.xpath('//div[%d]/div/div[@class="merch_name"]/a/span/text()'%int(i))
+        return store_name[0]
+    except :
+        return "NO store name strange !!!!!"
+
+   
+def Store_Url(doc , i ):
+    
+    try :
+        url_dict=doc.xpath('//div[%d]/div/div[@class="merch_name"]/a/@href'%int(i))
+        if (url_dict) :
+                store_url=url_dict[0].split("http%3A%2F%2F")[1].split(".com")[0]+".com"
+                #print store_url
+                
+                if "www."  not in store_url :
+                    store_url="www."+store_url
+                else : 
+                    pass 
+                
+                #print store_url
+        return store_url
+    except :
+        return "Lost in  web no url"  
+    
+        
+def Member_Id(doc , i):
+    try :
+        url_dict=doc.xpath('//div[%d]/div/div[@class="merch_name"]/a/@href'%int(i))
+        if (url_dict) :
+                store_mid=url_dict[0].split("&mid=")[1].split("&catId=")[0]           
+                return store_mid
+    except :
+        return "How can bizrate have a store without member_id !!!!!!!!" 
+          
+             
+def Recent_Review_Count(mid):
+    url="http://www.bizrate.com/ratings_guide/cust_reviews__mid--"+mid+".html"
+    
+    try :
+        doc=lh.parse(url)
+        text=doc.xpath("//*[@id='store_reviews']/div/div/div/text()")
+        count=text[0].split("of ")[1]
+        return count
+        
+    except:
+        return "No recent reviews"
+            
+        
+def Total_Stores_on_Page(doc):
+    try :
+        total=doc.xpath('//div/div/div[@class="merch_name"]/a/span/text()')
+        return len(total)
+    
+    except :
+        return 0
+
+
+def Browse_Category_Rest(category , j , f):
+    url="http://www.bizrate.com/"+category+"/ratings_guide/listing__start--"+str(j)+".html"
+    
+    try :
+        doc = lh.parse(url)
+        #print "url working"
+    except:
+        print "page unable to load ::::::::::: " +url+ "\n "
+        
+    i=1
+    total_store_count_on_page= Total_Stores_on_Page(doc)
+    
+    while(i <= total_store_count_on_page) :
+            store_name=Store_Name(doc, int(i))
+            store_url=Store_Url(doc,int(i))                
+            store_review_count=Review_Count(doc , int(i)) 
+            member_id=Member_Id(doc , i )
+            store_recent_reviews_count=Recent_Review_Count(member_id)
+            f.write(category+"|"+store_name+"|"+store_url+"|"+store_review_count+"|"+store_recent_reviews_count+"\n")
+            print i
+            print store_name
+            print store_url
+            print store_review_count
+            print store_recent_reviews_count
+            print "\n" +"*"*150+"\n"
+           
+            i= i+1
+            
+    
+    j=j+i-1  
+    f.flush()
+    
+    print i
+    if i<26 :
+        return
+    if j >=251 :
+        return     
+    Browse_Category_Rest(category , j , f)
+    
+                            
+def Browse_Category(category , f):
+    
+    url="http://www.bizrate.com/"+category+"/ratings_guide/listing/"
+    
+    try :
+        doc = lh.parse(url)
+        #print "url working"
+    except:
+        print "page unable to load ::::::::::: " +url+ "\n "
+        
+    i=1
+    total_store_count_on_page= Total_Stores_on_Page(doc)
+    
+    while(i <= total_store_count_on_page) :
+            store_name=Store_Name(doc, int(i))
+            store_url=Store_Url(doc,int(i))                
+            store_review_count=Review_Count(doc , int(i)) 
+            member_id=Member_Id(doc , i )
+            store_recent_reviews_count=Recent_Review_Count(member_id)
+            f.write(category+"|"+store_name+"|"+store_url+"|"+store_review_count+"|"+store_recent_reviews_count+"\n")
+            print i
+            print store_name
+            print store_url
+            print store_review_count
+            print store_recent_reviews_count
+            print "\n" +"*"*150+"\n"
+            
+            i= i+1
+            
+    print i 
+    f.flush()       
+    Browse_Category_Rest(category , i , f)
+    
+    
+def main():   
+    
+    
+    f=open('/home/aknauhwar/Desktop/bizrate_text.txt' , "w")
+    #departments=Find_Departments()
+    #print departments[1]
+    
+    departments=['appliances']
+    
+    for department in departments :
+        Browse_Category(department , f)
+        
+    
+    f.close()
+
+
+main() 
+
