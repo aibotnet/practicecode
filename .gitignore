@@ -1,4 +1,6 @@
 *.out
+*.class
+*.pyc
 
 
 
