@@ -1,7 +1,7 @@
 '''
 Created on 05-Dec-2013
 
-@author: aknauhwar
+@author: vkthakur
 '''
 
 import lxml
@@ -65,7 +65,7 @@ def main():
     
     
     
-    
+main()    
     
     
     
