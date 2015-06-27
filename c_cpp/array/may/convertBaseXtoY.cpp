@@ -25,7 +25,7 @@ vector<int> toDigits(long n , int base){
     }
     return reverse(v);
 }
-
+            //  [2,3,5]
 long fromDigits(vector<int> v, int base){
     long n=0;
     for(int i=0;i<v.size(); i++){

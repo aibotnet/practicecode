@@ -28,7 +28,11 @@ void printSumTricky(int mat[][n], int k){
             stripSum[i][j] = sum;
        }
    }
- 
+   for (int j=0; j<n; j++){
+      for (int j=0; j<n; j++){
+        
+      }    
+   }
    // 2: CALCULATE SUM of Sub-Squares using stripSum[][]
    for (int i=0; i<n-k+1; i++)
    {
