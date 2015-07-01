@@ -6,13 +6,11 @@ public class InterThreadCommunicationExample {
     public static void main(String args[]) {
 
         final Queue sharedQ = new LinkedList();
-
         Thread producer = new Producer(sharedQ);
         Thread consumer = new Consumer(sharedQ);
 
         producer.start();
         consumer.start();
-
     }
 }
 
@@ -30,7 +28,6 @@ class Producer extends Thread {
         for (int i = 0; i < 4; i++) {
 
             synchronized (sharedQ) {
-                //waiting condition - wait until Queue is not empty
                 while (sharedQ.size() >= 1) {
                     try {
                         sharedQ.wait();
@@ -38,7 +35,7 @@ class Producer extends Thread {
                         ex.printStackTrace();
                     }
                 }
-		System.out.println("producing : "+i);
+		            System.out.println("producing : "+i);
                 sharedQ.add(i);
                 sharedQ.notify();
             }
@@ -76,4 +73,3 @@ class Consumer extends Thread {
         }
     }
 }
-
