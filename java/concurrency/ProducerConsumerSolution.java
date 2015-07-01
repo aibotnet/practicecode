@@ -23,12 +23,12 @@ class Producer implements Runnable {
     }
     @Override
     public void run() {
-        for (int i = 0; i < 17; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println("Produced: " + i);
             try {
                 produce(i);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
+                  System.out.println("Thread producer interrupted");
             }
         }
     }
@@ -64,7 +64,7 @@ class Consumer implements Runnable {
                 System.out.println("Consumed: " + consume());
                 Thread.sleep(50);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Consumer.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Thread consumer interrupted");
             }
 
         }
