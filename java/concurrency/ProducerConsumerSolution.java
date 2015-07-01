@@ -30,7 +30,6 @@ class Producer implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
     }
     private void produce(int i) throws InterruptedException {

@@ -17,5 +17,10 @@ bool IsPowerOfThree(unsigned int n)
 }
 
 int main(){
-	
+
 }
+
+/*
+* 59040 == 3^10
+* 243   == 243
+*/
