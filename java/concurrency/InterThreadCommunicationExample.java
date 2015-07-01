@@ -24,9 +24,7 @@ class Producer extends Thread {
 
     @Override
     public void run() {
-
         for (int i = 0; i < 4; i++) {
-
             synchronized (sharedQ) {
                 while (sharedQ.size() >= 1) {
                     try {
@@ -54,7 +52,6 @@ class Consumer extends Thread {
     @Override
     public void run() {
         while(true) {
-
             synchronized (sharedQ) {
                 //waiting condition - wait until Queue is not empty
                 while (sharedQ.size() == 0) {
