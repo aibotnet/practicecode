@@ -1,5 +1,3 @@
-package com.journaldev.serialization;
-
 import java.io.IOException;
 
 public class SerializationTest {
@@ -10,6 +8,7 @@ public class SerializationTest {
         emp.setId(100);
         emp.setName("Pankaj");
         emp.setSalary(5000);
+        emp.data=99;
 
         //serialize to file
         try {
@@ -26,8 +25,9 @@ public class SerializationTest {
             e.printStackTrace();
         }
 
-        System.out.println("emp Object::"+emp);
-        System.out.println("empNew Object::"+empNew);
+        System.out.println("Emp Object::"+emp);
+        System.out.println("EmpNew Object::"+empNew);
+
     }
 
 }

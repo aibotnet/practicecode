@@ -1,8 +1,11 @@
-package com.journaldev.serialization;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+class Human implements Serializable{
+  public int data;
+}
+
+public class Employee extends Human implements Serializable {
 
 //  private static final long serialVersionUID = -6470090944414208496L;
 
@@ -13,7 +16,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString(){
-        return "Employee{name="+name+",id="+id+",salary="+salary+"}";
+        return "Employee{name="+name+",id="+id+",salary="+salary+"data="+data+"}";
     }
 
     //getter and setter methods
