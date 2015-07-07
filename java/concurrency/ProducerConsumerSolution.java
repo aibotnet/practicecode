@@ -28,7 +28,7 @@ class Producer implements Runnable {
             try {
                 produce(i);
             } catch (InterruptedException ex) {
-                  System.out.println("Thread producer interrupted");
+                System.out.println("Thread producer interrupted");
             }
         }
     }
