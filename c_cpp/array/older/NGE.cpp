@@ -12,10 +12,9 @@ void nextGreaterNumberWithSameSetOfDigit(int number[],int n){
 			break;
 	if(i==0){cout<<"Not Possible"<<endl;return;}
 
-	//find smallest digit in right side
 	int smallest_index=i;
 	for(int j=i+1;j<n;j++){
-		if(number[j] < number[smallest_index])
+		if((number[j] < number[smallest_index]) && (number[j] > number[i-1]))
 			smallest_index=j;
 	}
 	cout<<smallest_index<<endl;
@@ -26,7 +25,7 @@ void nextGreaterNumberWithSameSetOfDigit(int number[],int n){
 }
 
 int main(){
-	int  number[] = {5,4,3,9,8,7,6,5};
+	int  number[] = {5,4,3,9,8,7,6,5,1};
 	nextGreaterNumberWithSameSetOfDigit(number,sizeof(number)/sizeof(int));
 return 0;
 }

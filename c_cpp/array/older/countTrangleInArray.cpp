@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
  
-/* Following function is needed for library function qsort(). Refer
-   http://www.cplusplus.com/reference/clibrary/cstdlib/qsort/ */
+
 int comp(const void* a, const void* b)
 {  return *(int*)a > *(int*)b ; }
  

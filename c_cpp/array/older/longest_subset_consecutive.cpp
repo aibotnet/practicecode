@@ -18,16 +18,14 @@ void FindLongestSubset(int* s, int n, int* subs, int& slen){
 
     while(p < s + n){
         if(start == NULL){
-            start = p ++;
-            l ++;
+            start = p ++;l ++;
         }
         else{
             if(*p - *(p-1) == 1){
                 l ++;
             }
             else{
-                l = 0;
-                start = NULL;
+                l = 0;start = NULL;
             }
 
             p ++;
