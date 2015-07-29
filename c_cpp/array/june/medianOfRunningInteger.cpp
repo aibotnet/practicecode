@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
+#include <list>
 
 using namespace std;
 vector<int> mxh;
