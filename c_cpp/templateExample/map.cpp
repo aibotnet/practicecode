@@ -14,7 +14,7 @@ int main (){
 
   std::map<char,int>::iterator it;
   
-  mymap.insert ( std::pair<char,int>('z',2000) );
+  mymap.insert (pair<char,int>('z',2000) );
 
   for (it=mymap.begin(); it!=mymap.end(); ++it)
     std::cout << it->first << " => " << it->second << '\n';

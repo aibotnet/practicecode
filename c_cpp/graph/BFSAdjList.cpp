@@ -30,13 +30,9 @@ void BFS(int s){
 
     list<int>::iterator i; 
     while(!q.empty()){
-        // Dequeue a vertex from queue and print it
         s = q.front();
         cout << s << " ";
         q.pop();
-        // Get all adjacent vertices of the dequeued vertex s
-        // If a adjacent has not been visited, then mark it visited
-        // and enqueue it
         for(i = g.adj[s].begin(); i != g.adj[s].end(); ++i){
             if(!visited[*i]){
                 visited[*i] = true;

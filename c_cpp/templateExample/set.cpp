@@ -8,13 +8,17 @@ int main (){
   set<int> myset (myints,myints+5);
 
   cout << "myset (int) contains:";
+  myset.insert(23);
   set<int>::iterator it;
   for (it=myset.begin(); it!=myset.end(); ++it)
   	cout << ' ' << *it;
   cout << '\n';
 
+
+
   string sarr[] = {"a","hgg","vikas","hello","hi"};
   set<string> myset1 (sarr,sarr+5);
+  
   myset1.insert("geeksforgeeks");
 
   cout << "myset (string) contains:";
@@ -22,6 +26,10 @@ int main (){
   for (it1=myset1.begin(); it1!=myset1.end(); ++it1)
   	cout << ' ' << *it1;
   cout << '\n';
+
+
+
+
 
   it1 = myset1.find("hello");
   cout<<"\nresult : "<<*it1<<endl;
