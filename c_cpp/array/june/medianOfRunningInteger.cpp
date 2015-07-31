@@ -8,7 +8,7 @@
 
 using namespace std;
 vector<int> mxh;
-priority_queue<int,vector<int>,greater<int> > mnh;
+priority_queue<int> mnh;
 int size=0;
 void insert_in_max(int el){
     mxh.push_back(el);

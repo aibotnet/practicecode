@@ -8,7 +8,6 @@ int isSafe(int x, int y, int sol[N][N]){
     return 0;
 }
  
-/* A utility function to print solution matrix sol[N][N] */
 void printSolution(int sol[N][N]){
     for (int x = 0; x < N; x++){
         for (int y = 0; y < N; y++)
@@ -24,7 +23,6 @@ int solveKTUtil(int x, int y, int movei, int sol[N][N], int xMove[N],int yMove[N
    if (movei == N*N)
        return true;
  
-   /* Try all next moves from the current coordinate x, y */
    for (k = 0; k < 8; k++){
        next_x = x + xMove[k];
        next_y = y + yMove[k];
@@ -46,13 +44,11 @@ bool solveKT(){
     for (int x = 0; x < N; x++)
         for (int y = 0; y < N; y++)
             sol[x][y] = -1;
-    /* xMove[] and yMove[] define next move of Knight.
-       xMove[] is for next value of x coordinate
-       yMove[] is for next value of y coordinate */
+
     int xMove[8] = {  2, 1, -1, -2, -2, -1,  1,  2 };
     int yMove[8] = {  1, 2,  2,  1, -1, -2, -2, -1 };
  
-    // Since the Knight is initially at the first block
+
     sol[0][0]  = 0;
  
     /* Start from 0,0 and explore all tours using solveKTUtil() */
