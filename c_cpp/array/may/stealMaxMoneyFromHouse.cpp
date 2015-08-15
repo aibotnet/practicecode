@@ -7,29 +7,34 @@
 
 using namespace std;
 
-int compare(int a, int b){if(a>b) return a;return b;}
-//time complexity O(nlogn) using sorting
-int stealMaxMoneyFromHouse2(int arr[],int n){
-	int amount = 0 ;
-	sort(arr,arr+n,compare);
-	for(int i=n-1;i>=0;i-=2) amount+=arr[i];
-	return amount;		
+
+//Dp solution o(n) without using extra memory
+int stealMaxMoneyFromHouse2(int arr[], int n){
+	if(n==1) return arr[0];
+	else if(n==2) return max(arr[0],arr[1]);
+	int p,pp,temp; pp=arr[0];p= max(arr[0],arr[1]);
+	for(int i=2;i<n;i++){
+		temp = max(arr[i]+pp , p);
+		pp=p;p=temp;
+	}
+	return temp;
 }
 
 
 //time complexity O(2^n)
+// T(n) = max( a[i]+T(n-2) , T(n-1))
 int stealMaxMoneyFromHouse1(int arr[],int f, int l){
 	if(f>l) return 0;
 	if(f==l) return arr[f];
 
-	return max(arr[f]+stealMaxMoneyFromHouse1(arr,f+2,l) 
-		, arr[f+1]+stealMaxMoneyFromHouse1(arr,f+3,l));
+	return max(arr[f]+stealMaxMoneyFromHouse1(arr,f+2,l)
+		, stealMaxMoneyFromHouse1(arr,f+1,l));
 }
 
 int main() {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
-    int arr[] = {1,2,3,4,15,6};
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int arr[] = {11,2,3,12,15,10};
     cout<<stealMaxMoneyFromHouse1(arr,0,(sizeof(arr)/sizeof(int) -1))<<endl;
-    cout<<stealMaxMoneyFromHouse2(arr,sizeof(arr)/sizeof(int))<<endl;
+		cout<<stealMaxMoneyFromHouse2(arr,(sizeof(arr)/sizeof(int)))<<endl;
 return 0;
 }
