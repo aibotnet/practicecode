@@ -8,7 +8,7 @@
 
 using namespace std;
 vector<int> mxh;
-priority_queue<int> mnh;
+priority_queue<int,vector<int>,greater<int> > mnh;
 int size=0;
 void insert_in_max(int el){
     mxh.push_back(el);
@@ -28,24 +28,22 @@ int extract_from_min(){
 }
 
 void getBalance(int num){
-    int min,max;
-    if(size%2==0){
-        insert_in_max(num);size++;
-        if(mnh.size()==0) return;
-        if(mxh.front() > mnh.top()){
-            insert_in_min(extract_from_max());
-            insert_in_max(extract_from_min());
-        }
-    }else{
-        insert_in_max(num);size++;
-        insert_in_min(extract_from_max());
+    insert_in_max(num);size++;
+    if(size%2==0)
+      insert_in_min(extract_from_max());
+    else{
+      if(mnh.size()==0) return;
+      if(mxh.front() > mnh.top()){
+          insert_in_min(extract_from_max());
+          insert_in_max(extract_from_min());
+      }
     }
-} 
+}
 double getMedian(){
     if(size%2==0)
-        return (mxh.front()+mnh.top())/2.0;  
+        return (mxh.front()+mnh.top())/2.0;
     else
-        return mxh.front(); 
+        return mxh.front();
 }
 int main() {
     int num;
