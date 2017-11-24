@@ -1,6 +1,0 @@
-1. Design a transaction system for a bank with many atms across. He asked me if you want to deal with the bank how will you explain them the model and all the software and hardware requirements. He wanted a multithreaded client- server interaction model and the database requirements.
-
-Design rate Maze Problem.
-
-Median filter
-https://en.wikipedia.org/wiki/Median_filter

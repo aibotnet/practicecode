@@ -1,9 +1,0 @@
-Explain virtual memory and how mapping is done.
-
-Explain multithreading and how global, static etc variables are stored and accessed by threads.
-
-Many OS related questions Deadlock,Mutex, Semaphore, IPC etc.
-
-Questions on virtual memory and paging.
-
-Difference between process and threads, multiprogramming and multithreading, multithreading and multitasking.
